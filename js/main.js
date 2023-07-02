@@ -9,6 +9,7 @@ const myLibrary = [];
 addBookBtn.addEventListener("click", openFormModal);
 closeBtn.addEventListener("click", closeFormModal);
 overlay.addEventListener("click", closeFormModal);
+form.addEventListener("submit", addBookToLibrary);
 
 function Book(title, author, totalPages, status) {
   this.title = title;
@@ -17,11 +18,21 @@ function Book(title, author, totalPages, status) {
   this.status = status;
 }
 
-function addBookToLibrary(title, author, totalPages, status) {
+function addBookToLibrary(e) {
+  e.preventDefault();
+  let title = document.querySelector("#book-title").value;
+  let author = document.querySelector("#book-author").value;
+  let totalPages = document.querySelector("#book-length").value;
+  let status = document.querySelector("#book-status").value;
+
   myLibrary.push(new Book(title, author, totalPages, status));
+  createBookCard();
+  closeFormModal();
 }
 
 function createBookCard() {
+  bookCards.innerHTML = "";
+
   myLibrary.forEach(book => {
     const card = document.createElement("div");
     const bookTitle = document.createElement("h2");
