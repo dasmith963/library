@@ -4,6 +4,9 @@
   --dark-text-color: #121416d8;
   --light-text-color: #f7f8f8;
   --btn-bg-color: #543fd7;
+  --input-border: #cacdd3;
+  --input-focus: #7597f7;
+  --red: #f44268;
   --system-ui: -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans",
@@ -47,6 +50,18 @@ button:not(.close-btn) {
   transition: .3s;
 }
 
+button:not(.close-btn):hover{
+  background: #828fff;
+}
+
+button:not(.close-btn):active{
+  background: inherit;
+}
+
+ul{
+  list-style: none;
+}
+
 header {
   background: var(--secondary-bg-color);
   color: var(--light-text-color);
@@ -63,4 +78,56 @@ header>h1 {
   font-size: 2.5rem;
   font-weight: 600;
   text-align: center;
+}
+
+/* Add style to form header */
+.form-modal{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  background: var(--primary-bg-color);
+  padding: 1.5rem;
+  width: 350px;
+  border-radius: 10px;
+}
+
+.modal-header{
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.close-btn{
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background: inherit;
+  outline: 0;
+  border: 0;
+  border-radius: 50%;
+  padding: 0.4rem 0.8rem;
+  transition: .2s;
+}
+
+.close-btn:hover{
+  background: var(--input-border);
+  color: var(--red);
+}
+
+.overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: #00000080;
+  backdrop-filter: blur(3px);
 }
