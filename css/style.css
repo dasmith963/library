@@ -50,16 +50,19 @@ button:not(.close-btn) {
   transition: .3s;
 }
 
-button:not(.close-btn):hover{
+button:not(.close-btn):hover {
   background: #828fff;
 }
 
-button:not(.close-btn):active{
+button:not(.close-btn):active {
   background: inherit;
 }
 
-ul{
+ul {
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 header {
@@ -80,8 +83,7 @@ header>h1 {
   text-align: center;
 }
 
-/* Add style to form header */
-.form-modal{
+.form-modal {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -93,7 +95,7 @@ header>h1 {
   border-radius: 10px;
 }
 
-.modal-header{
+.modal-header {
   display: flex;
   justify-content: center;
   font-size: 1.5rem;
@@ -102,7 +104,7 @@ header>h1 {
   position: relative;
 }
 
-.close-btn{
+.close-btn {
   position: absolute;
   top: -15px;
   right: -15px;
@@ -114,12 +116,72 @@ header>h1 {
   transition: .2s;
 }
 
-.close-btn:hover{
+.close-btn:hover {
   background: var(--input-border);
   color: var(--red);
 }
 
-.overlay{
+label {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+input[type="text"],
+input[type="number"] {
+  display: block;
+  font-size: 1.2rem;
+  padding: 5px 8px;
+  margin: 10px 0;
+  width: 100%;
+  outline: 0;
+  border: 3px solid var(--input-border);
+  border-radius: 4px;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  border: 3px solid var(--input-focus);
+}
+
+.form-checkbox {
+  display: grid;
+  grid-template-columns: auto 1em;
+  align-items: end;
+  justify-items: end;
+  gap: 0.5em;
+  padding-bottom: 10px;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  background: #ffffff;
+  color: var(--btn-bg-color);
+  width: 1em;
+  height: 1em;
+  border: 0.15em solid var(--input-border);
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  box-shadow: inset 1em 1em var(--btn-bg-color);
+  background-color: CanvasText;
+  transform-origin: bottom left;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transition: 120ms transform ease;
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+.overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -130,4 +192,8 @@ header>h1 {
   height: 100%;
   background: #00000080;
   backdrop-filter: blur(3px);
+}
+
+.hidden{
+  display: none;
 }
