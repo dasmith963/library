@@ -38,15 +38,20 @@ function createBookCard() {
     const bookTitle = document.createElement("h2");
     const bookAuthor = document.createElement("p");
     const bookLength = document.createElement("p");
+    const btnContainer = document.createElement("div");
+    const deleteBtn = document.createElement("button");
 
     card.className = "card";
     bookTitle.textContent = `${book.title}`;
     bookAuthor.textContent = `by ${book.author}`;
     bookLength.textContent = `Pages: ${book.totalPages}`;
+    deleteBtn.textContent = "Delete";
 
+    btnContainer.appendChild(deleteBtn);
     card.appendChild(bookTitle);
     card.appendChild(bookAuthor);
     card.appendChild(bookLength);
+    card.appendChild(btnContainer);
     bookCards.appendChild(card);
   })
 }
