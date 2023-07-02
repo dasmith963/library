@@ -4,7 +4,7 @@ const formModal = document.querySelector(".form-modal");
 const closeBtn = document.querySelector(".close-btn");
 const overlay = document.querySelector(".overlay");
 const form = document.querySelector("form");
-const myLibrary = [];
+let myLibrary = [];
 
 addBookBtn.addEventListener("click", openFormModal);
 closeBtn.addEventListener("click", closeFormModal);
@@ -26,8 +26,10 @@ function addBookToLibrary(e) {
   let status = document.querySelector("#book-status").value;
 
   myLibrary.push(new Book(title, author, totalPages, status));
+  myLibrary = myLibrary.map((book, index) =>({...book, id: index}));
   createBookCard();
   closeFormModal();
+  console.log(myLibrary);
 }
 
 function createBookCard() {
