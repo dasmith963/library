@@ -23,13 +23,12 @@ function addBookToLibrary(e) {
   let title = document.querySelector("#book-title").value;
   let author = document.querySelector("#book-author").value;
   let totalPages = document.querySelector("#book-length").value;
-  let status = document.querySelector("#book-status").value;
+  let status = document.querySelector("#book-status").checked;
 
   myLibrary.push(new Book(title, author, totalPages, status));
-  myLibrary = myLibrary.map((book, index) =>({...book, id: index}));
+  myLibrary = myLibrary.map((book, index) => ({ ...book, id: index }));
   createBookCard();
   closeFormModal();
-  console.log(myLibrary);
 }
 
 function createBookCard() {
@@ -37,25 +36,32 @@ function createBookCard() {
 
   myLibrary.forEach(book => {
     const card = document.createElement("div");
-    const bookTitle = document.createElement("h2");
-    const bookAuthor = document.createElement("p");
-    const bookLength = document.createElement("p");
-    const btnContainer = document.createElement("div");
-    const deleteBtn = document.createElement("button");
-
     card.className = "card";
-    bookTitle.textContent = `${book.title}`;
-    bookAuthor.textContent = `by ${book.author}`;
-    bookLength.textContent = `Pages: ${book.totalPages}`;
-    deleteBtn.textContent = "Delete";
+    card.setAttribute("data-id", book.id);
 
-    btnContainer.appendChild(deleteBtn);
-    card.appendChild(bookTitle);
-    card.appendChild(bookAuthor);
-    card.appendChild(bookLength);
-    card.appendChild(btnContainer);
+    const bookTitle = document.createElement("h2");
+    bookTitle.textContent = `${book.title}`;
+
+    const bookAuthor = document.createElement("p");
+    bookAuthor.textContent = `by ${book.author}`;
+
+    const bookLength = document.createElement("p");
+    bookLength.textContent = `Pages: ${book.totalPages}`;
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.className = "delete-btn";
+    deleteBtn.textContent = "Delete";
+    deleteBtn.addEventListener("click", deleteBookCard);
+
+    card.append(bookTitle, bookAuthor, bookLength, deleteBtn);
     bookCards.appendChild(card);
   })
+}
+
+function deleteBookCard() {
+  this.parentNode.remove();
+  const id = this.parentNode.getAttribute("data-id")
+  myLibrary = myLibrary.filter((book) => book.id !== Number(id));
 }
 
 function openFormModal() {
