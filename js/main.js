@@ -23,7 +23,7 @@ function addBookToLibrary(e) {
   let title = document.querySelector("#book-title").value;
   let author = document.querySelector("#book-author").value;
   let totalPages = document.querySelector("#book-length").value;
-  let status = document.querySelector("#book-status").checked;
+  let status = document.querySelector("#book-status").checked ? "Read" : "Unread";
 
   myLibrary.push(new Book(title, author, totalPages, status));
   myLibrary = myLibrary.map((book, index) => ({ ...book, id: index }));
@@ -48,19 +48,28 @@ function createBookCard() {
     const bookLength = document.createElement("p");
     bookLength.textContent = `Pages: ${book.totalPages}`;
 
+    const btnContainer = document.createElement("div");
+    btnContainer.className = "btn-container";
+
+    const statusBtn = document.createElement("button");
+    statusBtn.textContent = `${book.status}`;
+
     const deleteBtn = document.createElement("button");
     deleteBtn.className = "delete-btn";
     deleteBtn.textContent = "Delete";
     deleteBtn.addEventListener("click", deleteBookCard);
 
-    card.append(bookTitle, bookAuthor, bookLength, deleteBtn);
+    btnContainer.append(statusBtn, deleteBtn)
+    card.append(bookTitle, bookAuthor, bookLength, btnContainer);
     bookCards.appendChild(card);
   })
 }
 
-function deleteBookCard() {
-  this.parentNode.remove();
-  const id = this.parentNode.getAttribute("data-id")
+function deleteBookCard(e) {
+  const card = e.target.closest(".card");
+  const id = card.getAttribute("data-id");
+  
+  card.remove();
   myLibrary = myLibrary.filter((book) => book.id !== Number(id));
 }
 
