@@ -1,6 +1,7 @@
 :root {
   --primary-bg-color: #efefef;
   --secondary-bg-color: #212a2e;
+  --card-bg-color: #fafafa;
   --dark-text-color: #121416d8;
   --light-text-color: #f7f8f8;
   --btn-bg-color: #543fd7;
@@ -83,6 +84,42 @@ header>h1 {
   text-align: center;
 }
 
+.book-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-auto-rows: 200px;
+  gap: 20px;
+  padding: 16px 32px;
+}
+
+.card {
+  background: var(--card-bg-color);
+  border-radius: 5px;
+  box-shadow: -2px 4px 5px -3px rgba(0, 0, 0, 0.3);
+  padding: 1.5rem;
+  word-wrap: break-word;
+  line-height: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: space-around;
+  gap: 5px;
+}
+
+.card>h2 {
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+.card>p {
+  font-size: 1.2rem;
+}
+
+.btn-container{
+  display: flex;
+  gap: 6px;
+  justify-self: end;
+}
+
 .form-modal {
   position: absolute;
   top: 50%;
@@ -119,6 +156,10 @@ header>h1 {
 .close-btn:hover {
   background: var(--input-border);
   color: var(--red);
+}
+
+.input-container {
+  width: 245px;
 }
 
 label {
@@ -194,6 +235,6 @@ input[type="checkbox"]:checked::before {
   backdrop-filter: blur(3px);
 }
 
-.hidden{
+.hidden {
   display: none;
 }
