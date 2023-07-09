@@ -6,6 +6,7 @@ const overlay = document.querySelector(".overlay");
 const form = document.querySelector("form");
 let myLibrary = [];
 
+document.addEventListener("keydown", handleKeyboard);
 addBookBtn.addEventListener("click", openFormModal);
 closeBtn.addEventListener("click", closeFormModal);
 overlay.addEventListener("click", closeFormModal);
@@ -95,4 +96,9 @@ function closeFormModal() {
   formModal.classList.add("hidden");
   overlay.classList.add("hidden");
   form.reset();
+}
+
+function handleKeyboard (e){
+  e.preventDefault()
+  if (e.key === "Escape" ) closeFormModal();
 }
