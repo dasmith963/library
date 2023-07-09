@@ -56,9 +56,9 @@ function createBookCard() {
     btnContainer.className = "btn-container";
 
     const readBtn = document.createElement("button");
-    book.status === "Read"
-      ? readBtn.textContent = "Unread"
-      : readBtn.textContent = "Read"
+    book.status === "Read" 
+      ? readBtn.textContent = "Unread" 
+      : readBtn.textContent = "Read";
     readBtn.addEventListener("click", toggleStatus);
 
     const deleteBtn = document.createElement("button");
@@ -99,6 +99,8 @@ function closeFormModal() {
 }
 
 function handleKeyboard (e){
-  e.preventDefault()
-  if (e.key === "Escape" ) closeFormModal();
+  if (e.key === "Escape" ){
+    e.preventDefault()
+    closeFormModal();
+  } 
 }
