@@ -103,6 +103,7 @@ header>h1 {
   grid-template-columns: minmax(0, 1fr);
   align-content: space-evenly;
   gap: 8px;
+  text-transform: capitalize;
 }
 
 .card>h2 {
@@ -114,7 +115,7 @@ header>h1 {
   font-size: 1.2rem;
 }
 
-.btn-container{
+.btn-container {
   display: flex;
   gap: 6px;
   justify-self: end;
