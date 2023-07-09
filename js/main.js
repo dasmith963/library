@@ -72,17 +72,16 @@ function createBookCard() {
 }
 
 function toggleStatus(e) {
-  const id = e.target.closest(".card").dataset.id;
-  myLibrary[id].status === "Read"
-    ? myLibrary[id].status = "Unread"
-    : myLibrary[id].status = "Read";
+  const index = e.target.closest(".card").dataset.id;
+  myLibrary[index].status === "Read"
+    ? myLibrary[index].status = "Unread"
+    : myLibrary[index].status = "Read";
   createBookCard();
 }
 
 function deleteBookCard(e) {
-  const id = e.target.closest(".card").dataset.id;
-  filteredList = myLibrary.filter((book) => book.id != id);
-  myLibrary = filteredList
+  const index = e.target.closest(".card").dataset.id;
+  myLibrary.splice(index, 1);
   createBookCard();
 }
 
