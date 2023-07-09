@@ -27,7 +27,6 @@ function addBookToLibrary(e) {
   let status = document.querySelector("#book-status").checked ? "Read" : "Unread";
 
   myLibrary.push(new Book(title, author, totalPages, status));
-  myLibrary = myLibrary.map((book, index) => ({ ...book, id: index }));
   createBookCard();
   closeFormModal();
 }
@@ -35,10 +34,10 @@ function addBookToLibrary(e) {
 function createBookCard() {
   bookCards.innerHTML = "";
 
-  myLibrary.forEach(book => {
+  myLibrary.forEach((book, index) => {
     const card = document.createElement("div");
     card.className = "card";
-    card.setAttribute("data-id", book.id);
+    card.setAttribute("data-id", index);
 
     const bookTitle = document.createElement("h2");
     bookTitle.textContent = `${book.title}`;
@@ -83,7 +82,7 @@ function toggleStatus(e) {
 function deleteBookCard(e) {
   const id = e.target.closest(".card").dataset.id;
   filteredList = myLibrary.filter((book) => book.id != id);
-  myLibrary = filteredList.map((book, index) => ({ ...book, id: index }));
+  myLibrary = filteredList
   createBookCard();
 }
 
