@@ -43,34 +43,47 @@ function createBookCard() {
     bookTitle.textContent = `${book.title}`;
 
     const bookAuthor = document.createElement("p");
-    bookAuthor.textContent = `by ${book.author}`;
+    bookAuthor.textContent = `By: ${book.author}`;
 
     const bookLength = document.createElement("p");
     bookLength.textContent = `Pages: ${book.totalPages}`;
 
+    const bookStatus = document.createElement("p");
+    bookStatus.textContent = `Status: ${book.status}`;
+
     const btnContainer = document.createElement("div");
     btnContainer.className = "btn-container";
 
-    const statusBtn = document.createElement("button");
-    statusBtn.textContent = `${book.status}`;
+    const readBtn = document.createElement("button");
+    book.status === "Read"
+      ? readBtn.textContent = "Unread"
+      : readBtn.textContent = "Read"
+    readBtn.addEventListener("click", toggleStatus);
 
     const deleteBtn = document.createElement("button");
     deleteBtn.className = "delete-btn";
     deleteBtn.textContent = "Delete";
     deleteBtn.addEventListener("click", deleteBookCard);
 
-    btnContainer.append(statusBtn, deleteBtn)
-    card.append(bookTitle, bookAuthor, bookLength, btnContainer);
+    btnContainer.append(readBtn, deleteBtn);
+    card.append(bookTitle, bookAuthor, bookLength, bookStatus, btnContainer);
     bookCards.appendChild(card);
   })
 }
 
+function toggleStatus(e) {
+  const id = e.target.closest(".card").dataset.id;
+  myLibrary[id].status === "Read"
+    ? myLibrary[id].status = "Unread"
+    : myLibrary[id].status = "Read";
+  createBookCard();
+}
+
 function deleteBookCard(e) {
-  const card = e.target.closest(".card");
-  const id = card.getAttribute("data-id");
-  
-  card.remove();
-  myLibrary = myLibrary.filter((book) => book.id !== Number(id));
+  const id = e.target.closest(".card").dataset.id;
+  filteredList = myLibrary.filter((book) => book.id != id);
+  myLibrary = filteredList.map((book, index) => ({ ...book, id: index }));
+  createBookCard();
 }
 
 function openFormModal() {
