@@ -12,11 +12,13 @@ closeBtn.addEventListener("click", closeFormModal);
 overlay.addEventListener("click", closeFormModal);
 form.addEventListener("submit", addBookToLibrary);
 
-function Book(title, author, totalPages, status) {
-  this.title = title;
-  this.author = author;
-  this.totalPages = totalPages;
-  this.status = status;
+class Book {
+  constructor(title, author, totalPages, status) {
+    this.title = title;
+    this.author = author;
+    this.totalPages = totalPages;
+    this.status = status;
+  }
 }
 
 function addBookToLibrary(e) {
@@ -55,8 +57,8 @@ function createBookCard() {
     btnContainer.className = "btn-container";
 
     const readBtn = document.createElement("button");
-    book.status === "Read" 
-      ? readBtn.textContent = "Unread" 
+    book.status === "Read"
+      ? readBtn.textContent = "Unread"
       : readBtn.textContent = "Read";
     readBtn.addEventListener("click", toggleStatus);
 
@@ -96,9 +98,9 @@ function closeFormModal() {
   form.reset();
 }
 
-function handleKeyboard (e){
-  if (e.key === "Escape" ){
+function handleKeyboard(e) {
+  if (e.key === "Escape") {
     e.preventDefault()
     closeFormModal();
-  } 
+  }
 }
